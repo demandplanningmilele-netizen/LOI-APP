@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Sales LOIs</title>
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f5f5f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LOIs"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{--bg:#f5f5f7;--card:#fff;--fg:#1d1d1f;--mut:#6e6e73;--line:#e8e8ed;--pri:#0071e3;--chip:#f5f5f7;--ok:#248a3d;--bad:#d70015;--mid:#b25000;--inf:#0071e3;--neu:#6e6e73;--okb:#e4f6e9;--badb:#ffe6e9;--midb:#fff1dc;--infb:#e5f0ff;--neub:#efeff4;--sh:0 1px 2px rgba(0,0,0,.04),0 10px 30px rgba(0,0,0,.06);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--card:#1c1c1e;--fg:#f5f5f7;--mut:#98989d;--line:#2c2c2e;--pri:#0a84ff;--chip:#2c2c2e;--ok:#30d158;--bad:#ff453a;--mid:#ff9f0a;--inf:#0a84ff;--neu:#98989d;--okb:rgba(48,209,88,.16);--badb:rgba(255,69,58,.16);--midb:rgba(255,159,10,.16);--infb:rgba(10,132,255,.18);--neub:rgba(152,152,157,.16);--sh:none}}
+:root[data-theme="dark"]{--bg:#000;--card:#1c1c1e;--fg:#f5f5f7;--mut:#98989d;--line:#2c2c2e;--pri:#0a84ff;--chip:#2c2c2e;--ok:#30d158;--bad:#ff453a;--mid:#ff9f0a;--inf:#0a84ff;--neu:#98989d;--okb:rgba(48,209,88,.16);--badb:rgba(255,69,58,.16);--midb:rgba(255,159,10,.16);--infb:rgba(10,132,255,.18);--neub:rgba(152,152,157,.16);--sh:none}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.47 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:1040px;margin:0 auto;padding:16px}.card{background:var(--card);border-radius:22px;padding:22px;box-shadow:var(--sh)}
+#login{max-width:400px;margin-top:11vh;text-align:center;padding:32px 26px}
+.logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(145deg,#2997ff,#0057d8);margin:0 auto 18px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;letter-spacing:.02em}
+h1{font-size:28px;line-height:1.15;font-weight:700;letter-spacing:-.022em;margin:0}h2{font-size:19px;font-weight:650;letter-spacing:-.01em;margin:26px 0 10px}
+label{display:block;font-size:13px;color:var(--mut);margin:16px 0 6px;text-align:left}
+input,select{width:100%;padding:13px 14px;font:inherit;font-size:16px;color:var(--fg);background:var(--chip);border:1px solid transparent;border-radius:12px;appearance:none;-webkit-appearance:none}
+input:focus,select:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 4px var(--infb)}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}.btn{padding:13px 18px;border:0;border-radius:99px;background:var(--pri);color:#fff;font-weight:600}.btn:active{opacity:.8}
+#login .btn{width:100%;margin-top:22px}#err{color:var(--bad);font-size:14px;min-height:22px;margin-top:12px}
+.bar{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:18px}.mut{color:var(--mut);font-size:13px}.out{background:var(--chip);color:var(--pri);padding:9px 16px;font-size:14px}
+#adm{margin-bottom:14px}.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:6px 0 20px}@media(min-width:760px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{text-align:left;background:var(--chip);border:0;border-radius:18px;padding:16px;color:var(--fg);transition:transform .12s}.tile:active{transform:scale(.97)}
+.tile b{display:block;font-size:38px;line-height:1.05;font-weight:700;letter-spacing:-.03em}.tile span{display:block;margin-top:6px;font-size:13px;color:var(--mut);font-weight:500}
+.tile.ok b{color:var(--ok)}.tile.inf b{color:var(--inf)}.tile.bad b{color:var(--bad)}
+.tabs{display:flex;gap:2px;padding:3px;background:var(--chip);border-radius:12px;margin:0 0 18px}.tabs button{flex:1;padding:9px 6px;border:0;border-radius:10px;background:transparent;color:var(--fg);font-size:14px;font-weight:500}
+.tabs button[aria-pressed=true]{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.14);font-weight:650}
+.row2{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px}@media(min-width:620px){.row2{grid-template-columns:2fr 1fr}}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}table{border-collapse:collapse;width:100%;white-space:nowrap}
+th{text-align:left;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);font-weight:600;padding:11px 12px;background:var(--chip)}
+td{padding:11px 12px;border-top:1px solid var(--line);font-size:14px}tr.g td{border-top:1px solid var(--mut)}tbody tr:hover td{background:var(--chip)}
+.pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:12.5px;font-weight:600}
+.ok.pill{background:var(--okb)}.bad.pill{background:var(--badb)}.mid.pill{background:var(--midb)}.inf.pill{background:var(--infb)}.neu.pill{background:var(--neub)}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.mid{color:var(--mid)}.inf{color:var(--inf)}.neu{color:var(--neu)}
+.big{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:700px){.big{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--chip);border-radius:20px;padding:22px 16px;text-align:center}.stat strong{display:block;font-size:17px}.stat span{font-size:13px}
+.ring{width:124px;height:124px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;position:relative;margin:0 auto 14px}
+.ring:before{content:"";position:absolute;inset:12px;background:var(--chip);border-radius:50%}.ring b{position:relative;font-size:26px;letter-spacing:-.02em}
+.trk{height:9px;background:var(--line);border-radius:99px;overflow:hidden}.trk i{display:block;height:100%;background:linear-gradient(90deg,#64b5ff,var(--pri));border-radius:99px}
+.cb{display:grid;grid-template-columns:minmax(90px,150px) 1fr 34px;gap:12px;align-items:center;margin:9px 0;font-size:14px}.cb b{text-align:right}
+.note{color:var(--mut);font-size:13px;margin:14px 2px 0}
+
+:root{--oth:#a9b6c8}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--oth:#5a6678}}:root[data-theme="dark"]{--oth:#5a6678}
+body{background:radial-gradient(900px 420px at 50% -80px,var(--infb),transparent 70%),var(--bg);background-attachment:fixed}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:-22px -22px 16px;padding:16px 22px;background:color-mix(in srgb,var(--card) 82%,transparent);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);border-radius:22px 22px 0 0}
+.bar h1{font-size:24px}.out{white-space:nowrap}
+.tile span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--pri);margin-right:7px}.tile.ok span:before{background:var(--ok)}.tile.inf span:before{background:var(--inf)}.tile.bad span:before{background:var(--bad)}.tile span:before{vertical-align:1px}
+td:first-child,th:first-child{position:sticky;left:0;z-index:1;background:var(--card);font-weight:600}th:first-child{background:var(--chip)}td:first-child{box-shadow:1px 0 0 var(--line)}
+.ring{position:relative;width:132px;height:132px;margin:0 auto 12px;background:none;display:block}.ring:before{display:none}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.rt{fill:none;stroke:var(--line);stroke-width:11}.rf{fill:none;stroke-width:11;stroke-linecap:round;animation:rg 1.1s cubic-bezier(.2,.8,.2,1) both}.c-ok{stroke:var(--ok)}.c-bad{stroke:var(--bad)}.c-pri{stroke:var(--pri)}
+@keyframes rg{from{stroke-dasharray:0 100}}@keyframes gr{from{transform:scaleX(0)}}@keyframes gu{from{transform:scaleY(0)}}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:27px;font-weight:700;letter-spacing:-.03em}
+.sb{display:flex;height:12px;background:var(--line);border-radius:99px;overflow:hidden}.sb i{display:block;height:100%;transform-origin:left;animation:gr .9s cubic-bezier(.2,.8,.2,1) both}
+.sb i.ok,.stk i.ok{background:var(--ok)}.sb i.bad,.stk i.bad{background:var(--bad)}.sb i.oth,.stk i.oth{background:var(--oth)}
+.cb{grid-template-columns:minmax(96px,150px) 1fr 30px}
+.trend{display:flex;gap:14px;align-items:flex-end;padding:6px 2px}.col{flex:1;max-width:96px;display:flex;flex-direction:column;gap:6px;text-align:center}
+.stk{height:120px;display:flex;flex-direction:column-reverse;border-radius:10px;overflow:hidden}.stk i{display:block;width:100%;transform-origin:bottom;animation:gu .9s cubic-bezier(.2,.8,.2,1) both}
+.lg{display:flex;gap:16px;flex-wrap:wrap;margin:12px 2px 0;font-size:13px;color:var(--mut)}.lg span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--x)}
+.k-ok{--x:var(--ok)}.k-oth{--x:var(--oth)}.k-bad{--x:var(--bad)}
+.stat{padding:24px 16px;box-shadow:0 1px 0 rgba(255,255,255,.04) inset}
+.hls{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hl{background:var(--chip);border-radius:18px;padding:16px}.hl b{display:block;font-size:19px;margin:4px 0;letter-spacing:-.01em}.hl.ok b{color:var(--ok)}.hl.bad b{color:var(--bad)}
+.cc{display:grid;grid-template-columns:minmax(96px,150px) 1fr 30px;gap:12px;align-items:center;width:100%;padding:12px;margin:2px 0;border:0;border-radius:12px;background:transparent;color:var(--fg);text-align:left;font-size:14px}.cc:active,.cc:hover{background:var(--chip)}.cc b{text-align:right}
+.chip{padding:8px 14px;border:0;border-radius:99px;background:var(--infb);color:var(--pri);font-weight:600;margin-bottom:12px}
+
+.home{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.ht{text-align:left;border:0;border-radius:24px;padding:20px 18px;min-height:168px;color:var(--fg);display:flex;flex-direction:column;justify-content:space-between;transition:transform .14s;background:var(--chip)}.ht:active{transform:scale(.97)}
+.ht .bt{font-size:15px;font-weight:650}.ht b{font-size:46px;line-height:1;font-weight:700;letter-spacing:-.04em;margin:14px 0 8px}.ht .bc{font-size:12.5px;color:var(--mut);line-height:1.35}
+.ht.ok{background:linear-gradient(160deg,var(--okb),var(--chip))}.ht.ok b{color:var(--ok)}.ht.pri{background:linear-gradient(160deg,var(--infb),var(--chip))}.ht.pri b{color:var(--pri)}
+.ht.inf{background:linear-gradient(160deg,var(--neub),var(--chip))}.ht.mid{background:linear-gradient(160deg,var(--midb),var(--chip))}.ht.mid b{color:var(--mid)}
+.back{background:none;border:0;color:var(--pri);font-size:16px;font-weight:600;padding:4px 0;margin-bottom:12px}
+.tile[aria-pressed=true]{box-shadow:0 0 0 2px var(--pri)}.row1{margin-bottom:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chipx{border:0;background:var(--chip);color:var(--fg);padding:9px 14px;border-radius:99px;font-size:13.5px;font-weight:500}
+.rk{white-space:normal;min-width:220px;max-width:340px;line-height:1.35}
+.ci{background:var(--chip);border-radius:18px;padding:14px 16px;margin:10px 0}.ch{display:flex;flex-direction:column;margin-bottom:8px}.ch strong{font-size:16px}
+.ul{padding:10px 0;border-top:1px solid var(--line)}.ur{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-bottom:7px}.ur b{white-space:nowrap}
+.ub{display:flex;height:8px;border-radius:99px;overflow:hidden;background:var(--line)}.ub i{display:block;height:100%}.pu{background:var(--ok)}.pr{background:var(--mid)}
+.age{display:inline-block;margin-top:7px;font-size:12px;font-weight:600;color:var(--mid);background:var(--midb);padding:2px 9px;border-radius:99px}
+.sb i.am{background:var(--mid)}
+.hl{border:0;text-align:left;color:var(--fg);width:100%}
+
+.ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:12px}.ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ht.ok .ic{color:var(--ok)}.ht.pri .ic{color:var(--pri)}.ht.inf .ic{color:var(--inf)}.ht.mid .ic{color:var(--mid)}
+.ht{animation:up .55s cubic-bezier(.2,.8,.2,1) both;box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 28px rgba(0,0,0,.05)}.ht:nth-child(2){animation-delay:.06s}.ht:nth-child(3){animation-delay:.12s}.ht:nth-child(4){animation-delay:.18s}
+.tile{animation:up .45s cubic-bezier(.2,.8,.2,1) both}.stat,.ci,.hl{animation:up .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.bar{background:var(--card)}@supports(background:color-mix(in srgb,red,blue)){.bar{background:color-mix(in srgb,var(--card) 82%,transparent)}}
+.uc{background:var(--chip);border-radius:18px;padding:14px 16px;margin:10px 0;animation:up .45s cubic-bezier(.2,.8,.2,1) both}
+.uc .t{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.uc .t strong{font-size:16px;line-height:1.25}.uc .t b{font-size:30px;line-height:1;color:var(--mid);letter-spacing:-.03em;text-align:right}.uc .t b small{display:block;font-size:11px;font-weight:600;color:var(--mut);letter-spacing:.02em;margin-top:3px}
+.uc .s{color:var(--mut);font-size:13.5px;margin:3px 0 8px}.uc .m{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:13.5px}.uc .rk{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);min-width:0;max-width:none;font-size:13.5px;white-space:pre-wrap}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-left:8px;vertical-align:1px;box-shadow:0 0 0 0 var(--ok);animation:pu 2.4s infinite}.live.off{background:var(--oth);animation:none}
+@keyframes pu{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;background:var(--fg);color:var(--bg);padding:11px 18px;border-radius:99px;font-size:14px;font-weight:600;z-index:20;transition:.35s;pointer-events:none;white-space:nowrap}.toast.on{opacity:1;transform:translate(-50%,0)}
+.act{display:flex;gap:14px;align-items:center;width:100%;text-align:left;border:0;border-radius:18px;padding:14px 16px;background:var(--chip);color:var(--fg);margin:0 0 10px}.act b{display:block;font-size:16px}.act span{color:var(--mut);font-size:13px}.act .ic{margin:0;flex:none;color:var(--pri)}
+.pc{background:var(--chip);border-radius:18px;padding:16px;margin:0 0 12px}.pc .r{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.pc .r2{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.pc .mut{word-break:break-all;margin:3px 0}.mono{font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:6px;word-break:break-all}
+.btn2{background:var(--card);color:var(--pri);padding:9px 14px;font-size:14px;border:1px solid var(--line);border-radius:99px;font-weight:600}.btn:disabled{opacity:.5}
+.msg{border-radius:14px;padding:10px 14px;margin:8px 0;font-size:14px}.msg.e{background:var(--badb);color:var(--bad)}.msg.w{background:var(--midb);color:var(--mid)}.msg.o{background:var(--okb);color:var(--ok)}
+.fld{display:grid;gap:8px;grid-template-columns:1fr;margin-top:10px}.chk{display:flex;gap:10px;align-items:flex-start;margin:12px 0;font-size:14px;color:var(--fg)}.chk input{width:auto;margin-top:3px}input[type=file]{margin-top:10px;padding:10px}
+</style></head><body>
+<main id="login" class="card"><div class="logo">LOI</div><h1>Sales LOIs</h1><div class="mut" style="margin-top:6px">Sign in to see your LOIs.</div>
+<label for="u">Login Id</label><input id="u" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
+<label for="p">Password</label><input id="p" type="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false">
+<button class="btn" id="go">Sign in</button><div id="err" role="alert"></div></main>
+<main id="app" hidden><div class="card">
+<div class="bar"><div><h1 id="who"></h1><div class="mut" id="upd"></div></div><button class="btn out" id="lo">Sign out</button></div>
+<div id="adm" hidden style="margin-bottom:14px"><select id="sal" aria-label="Salesman"></select></div>
+<div id="body"></div></div></main><div class="toast" id="toast" role="status"></div>
+<script>
+let D=null;const DF="data/s06.json",POLL=window.__POLL||60000,enc=new TextEncoder(),dec=new TextDecoder(),$=i=>document.getElementById(i);
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+let P,PW,TM,view="home",sub="all",sal="",cty="",q="",full=false;
+const K={code:"LOI Code",date:"LOI Date",sp:"Sales Person",cty:"Destination - Country",cust:"Customer Name",st:"LOI Status",qty:"Total Qty",rem:"Remaining Units",rk:"Remarks"};
+const A="approved",W="waiting for approval",R="loi declined";
+const N=s=>String(s==null?"":s).trim().replace(/\s+/g," ").toLowerCase();
+const num=v=>typeof v==="number"?v:(parseFloat(v)||0);
+const ST=s=>{s=N(s);return s===A?"ok":/declin|reject/.test(s)?"bad":s===W?"inf":s==="hold"?"mid":"neu"};
+const fd=s=>/^\d{4}-\d{2}-\d{2}$/.test(String(s||""))?new Date(s+"T00:00:00Z").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}):(s||"");
+const ICONS={lois:'<svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4M10 12h6M10 16h6"/></svg>',perf:'<svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V4M16 20v-7M21 20H3"/></svg>',region:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.5 3.2 3.5 14.8 0 18M12 3c-3.5 3.2-3.5 14.8 0 18"/></svg>',up:'<svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>',key:'<svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>',units:'<svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>'};
+const hasD=l=>/^\d{4}-\d{2}-\d{2}$/.test(String(l[K.date]||""));
+const lv=l=>hasD(l)?90-days(l[K.date]):9999;
+const ed=l=>!hasD(l)?"":new Date(Date.parse(l[K.date]+"T00:00:00Z")+90*864e5).toISOString().slice(0,10);
+const days=d=>Math.floor((Date.now()-new Date(d+"T00:00:00Z"))/864e5);
+const h=(t,c,x,k)=>{const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;(k||[]).forEach(y=>e.appendChild(y));return e};
+const pct=(a,b)=>b?(100*a/b).toFixed(1)+"%":"0%";
+const pill=s=>s?h("span","pill "+ST(s),s):"";
+function groups(rows){const m=new Map();rows.forEach(r=>{const k=N(r[K.cust])+"|"+r[K.date];let g=m.get(k);if(!g){g={cust:r[K.cust],date:r[K.date],country:r[K.cty],sp:r[K.sp],lines:[],s:new Set()};m.set(k,g)}g.lines.push(r);g.s.add(N(r[K.st]))});m.forEach(g=>{g.n=g.s.size===1?[...g.s][0]:"mixed"});return [...m.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date))||String(a.cust).localeCompare(String(b.cust)))}
+const c=(g,s)=>g.filter(x=>x.n===s).length;
+const by=(G,f)=>{const m=new Map();G.forEach(g=>{const k=f(g)||"Unknown";(m.get(k)||m.set(k,[]).get(k)).push(g)});return [...m.entries()].sort((x,y)=>y[1].length-x[1].length)};
+function tbl(head,rows){const t=h("table"),hd=h("tr");head.forEach(x=>hd.appendChild(h("th","",x)));t.appendChild(h("thead","",undefined,[hd]));
+ const b=h("tbody");rows.forEach(r=>{const tr=h("tr",r.g?"g":"");r.c.forEach(x=>tr.appendChild(h("td","",x instanceof Node?undefined:x,x instanceof Node?[x]:[])));b.appendChild(tr)});t.appendChild(b);return h("div","wrap",undefined,[t])}
+const cell=(col,l)=>{const v=l[col];if(v===""||v==null)return "";if(col===K.st)return pill(v);if(col===K.date)return fd(v);if(col===K.rk)return h("div","rk",String(v));return typeof v==="number"?v.toLocaleString():String(v)};
+const sb=(v,mx)=>{const t=h("div","sb"),o=v.length-c(v,A)-c(v,R);[[c(v,A),"ok"],[o,"oth"],[c(v,R),"bad"]].forEach(([x,k])=>{if(x){const i=h("i",k);i.style.width=100*x/mx+"%";t.appendChild(i)}});return t};
+const lgd=()=>h("div","lg",undefined,[h("span","k-ok","Approved"),h("span","k-oth","Other"),h("span","k-bad","Rejected")]);
+const rg=(l,p,t,sub2,k)=>{const d=h("div","ring");d.innerHTML='<svg viewBox="0 0 120 120"><circle class="rt" cx="60" cy="60" r="50"/>'+(p>0?'<circle class="rf c-'+k+'" cx="60" cy="60" r="50" pathLength="100" style="stroke-dasharray:'+Math.min(100,p).toFixed(1)+' 100"/>':"")+"</svg>";d.appendChild(h("b","",t));return h("div","stat",undefined,[d,h("strong","",l),h("span","mut",sub2)])};
+const st3=(l,v,s)=>h("div","stat",undefined,[h("b","",String(v)),h("strong","",l),h("span","mut",s)]);
+function topLow(M){const s=M.map(([k,v])=>({k,n:v.length,a:c(v,A),r:c(v,R),w:c(v,W),rate:c(v,A)/v.length}));
+ const top=s.filter(z=>z.a>0).sort((x,y)=>y.a-x.a||y.rate-x.rate||y.n-x.n)[0]||null;
+ const low=s.length>1?s.filter(z=>(z.a+z.r)>0&&z.rate<1&&(!top||z.k!==top.k)).sort((x,y)=>x.rate-y.rate||y.r-x.r||y.n-x.n)[0]||null:null;return{s,top,low}}
+const ctx=()=>{const R0=P.admin&&sal?P.rows.filter(r=>r[K.sp]===sal):P.rows,G=groups(R0);return{R0,G,n:G.length,a:c(G,A),w:c(G,W),r:c(G,R)}};
+const lines=R0=>R0.filter(l=>N(l[K.st])===A);
+function go(v,o){view=v;if(v==="home"){sub="all";cty="";q="";full=false;stat=""}if(o){if(o.sub!==undefined)sub=o.sub;if(o.cty!==undefined)cty=o.cty}draw();try{scrollTo(0,0)}catch(e){}}
+function draw(){const x=ctx(),B=$("body");B.textContent="";$("who").textContent="Welcome, "+P.name.split(" ")[0];$("upd").textContent="";$("upd").appendChild(document.createTextNode("Last updated "+D.updated));$("upd").appendChild(h("span","live"+(navigator.onLine===false?" off":"")));
+ if(view!=="home"){const b=h("button","back","\u2039 Home");b.onclick=()=>go("home");B.appendChild(b)}
+ ({home,lois,perf,region,units,publish,share})[view](x,B)}
+function home(x,B){const{R0,G,n,a,w,r}=x,M=by(G,g=>g.country),rl=lines(R0).filter(l=>num(l[K.rem])>0),lvl=rl.filter(l=>lv(l)>=0),rem=lvl.reduce((s,l)=>s+num(l[K.rem]),0),cu=new Set(lvl.map(l=>N(l[K.cust]))).size,e14=lvl.filter(l=>lv(l)<=14).length,tp=topLow(M).top;
+ const T=P.admin?["All LOIs","Team performance","Regions","Units to Purchase"]:["My LOIs","My performance","My region","Units to Purchase"];
+ const t=(cls,ti,big,cap,v)=>{const ic=h("span","ic");ic.innerHTML=ICONS[v];const b=h("button","ht "+cls,undefined,[ic,h("span","bt",ti),h("b","",big),h("span","bc",cap)]);b.onclick=()=>go(v);return b};
+ B.appendChild(h("div","home",undefined,[t("ok",T[0],String(n),a+" approved \u00b7 "+w+" waiting","lois"),t("pri",T[1],pct(a,n),"waiting "+pct(w,n)+" \u00b7 rejected "+pct(r,n),"perf"),t("inf",T[2],String(M.length),tp?"Top: "+tp.k:"No approvals yet","region"),t("mid",T[3],String(rem),e14?e14+" expiring within 14 days":cu+" customer"+(cu==1?"":"s")+" \u00b7 none expiring soon","units")]));
+ if(P.admin){const wl=G.filter(g=>g.n===W&&days(g.date)>14).length,o=n-a-w-r,ex=rl.filter(l=>lv(l)<0).length;
+  const ch=(t2,f)=>{const b=h("button","chipx",t2);b.onclick=f;return b};
+  B.appendChild(h("h2","","Needs attention"));
+  B.appendChild(h("div","chips",undefined,[ch("Hold / Not applied \u00b7 "+o,()=>go("lois",{sub:"other"})),ch("Waiting over 14 days \u00b7 "+wl,()=>go("lois",{sub:"waiting"})),ch("Expiring within 14 days \u00b7 "+e14,()=>go("units")),ch("Expired, reapply \u00b7 "+ex,()=>go("units"))]));
+  B.appendChild(h("h2","","Publish"));
+  const act=(t,sb2,v,ic)=>{const i=h("span","ic");i.innerHTML=ICONS[ic];const b=h("button","act",undefined,[i,h("div","",undefined,[h("b","",t),h("span","",sb2)])]);b.onclick=()=>go(v);return b};
+  B.appendChild(act("Upload master","Choose your Excel file and publish to every link","publish","up"));
+  B.appendChild(act("Share logins","Links and passwords, ready to send","share","key"));
+  if(P.meta)B.appendChild(h("div","mut","Last published by "+P.meta.by+" \u00b7 "+P.meta.atText+" \u00b7 "+P.meta.lois+" LOIs"))}}
+function lois(x,B){const{G,n,a,w,r}=x,o=n-a-w-r;
+ const defs=[["all","Total LOIs",n],["approved","Approved",a],["waiting","Waiting for approval",w],["rejected","Rejected",r]];if(P.admin)defs.push(["other","Hold / Not applied",o]);
+ const T=h("div","tiles");defs.forEach(([k,l,v])=>{const b=h("button","tile "+({approved:"ok",waiting:"inf",rejected:"bad"}[k]||""),undefined,[h("b","",String(v)),h("span","",l)]);b.setAttribute("aria-pressed",sub===k);b.onclick=()=>{sub=k;draw()};T.appendChild(b)});B.appendChild(T);
+ if(cty){const z=h("button","chip","Country: "+cty+"   \u2715");z.onclick=()=>{cty="";draw()};B.appendChild(z)}
+ const i=h("input");i.placeholder="Search customer, country, LOI, SO, model, remarks";i.value=q;B.appendChild(h("div","row1",undefined,[i]));
+ const out=h("div");B.appendChild(out);
+ const f=g=>sub==="all"||(sub==="approved"&&g.n===A)||(sub==="waiting"&&g.n===W)||(sub==="rejected"&&g.n===R)||(sub==="other"&&![A,W,R].includes(g.n));
+ const rd=()=>{out.textContent="";const t=q.trim().toLowerCase(),rows=[];let k=0;
+  G.forEach(g=>{if(!f(g)||(cty&&g.country!==cty))return;if(t&&!JSON.stringify(g.lines).toLowerCase().includes(t))return;k++;g.lines.forEach((l,j)=>rows.push({g:!j,c:P.cols.map(col=>cell(col,l))}))});
+  out.appendChild(h("div","mut",k+" LOI"+(k==1?"":"s")+" shown"));out.appendChild(rows.length?tbl(P.cols,rows):h("p","mut","No LOIs found."))};
+ i.oninput=()=>{q=i.value;rd()};rd()}
+function perf(x,B){const{G,n,a,w,r}=x;
+ B.appendChild(h("div","big",undefined,[rg("Approved",n?100*a/n:0,pct(a,n),a+" of "+n+" LOIs","ok"),rg("Waiting for approval",n?100*w/n:0,pct(w,n),w+" of "+n+" LOIs","pri"),rg("Rejected",n?100*r/n:0,pct(r,n),r+" of "+n+" LOIs","bad")]));
+ if(P.admin&&!sal){const M=by(G,g=>g.sp),mx=M.length?M[0][1].length:1;B.appendChild(h("h2","","Salesman leaderboard"));
+  M.forEach(([k,v])=>B.appendChild(h("div","cb",undefined,[h("span","",k),sb(v,mx),h("b","",String(v.length))])));B.appendChild(lgd());
+  B.appendChild(h("h2","","Percentages by salesman"));
+  B.appendChild(tbl(["Salesman","LOIs","Approved %","Waiting %","Rejected %"],M.map(([k,v])=>({c:[k,String(v.length),pct(c(v,A),v.length),pct(c(v,W),v.length),pct(c(v,R),v.length)]}))))}}
+function region(x,B){const{G}=x,M=by(G,g=>g.country),{top,low}=topLow(M);
+ const hl=(cls,t,z,d)=>{const b=h("button","hl "+cls,undefined,[h("span","mut",t),h("b","",z?z.k:"\u2014"),h("span","mut",z?d(z):"Not enough data yet")]);if(z)b.onclick=()=>go("lois",{cty:z.k,sub:"all"});return b};
+ B.appendChild(h("div","hls",undefined,[hl("ok","Top performing country",top,z=>z.a+" approved of "+z.n+" placed"),hl("bad","Low performing country",low,z=>z.n+" placed \u00b7 "+z.a+" approved \u00b7 "+z.r+" rejected")]));
+ B.appendChild(h("h2","","All countries"));const mx=M.length?M[0][1].length:1;
+ M.forEach(([k,v])=>{const b=h("button","cc",undefined,[h("span","",k),sb(v,mx),h("b","",String(v.length))]);b.onclick=()=>go("lois",{cty:k,sub:"all"});B.appendChild(b)});B.appendChild(lgd());
+ if(P.admin&&!sal){const sp=[...new Set(G.map(g=>g.sp))].sort(),cs=M.map(m=>m[0]);B.appendChild(h("h2","","Salesman by country"));
+  B.appendChild(tbl(["Salesman",...cs,"Total"],sp.map(p=>({c:[p,...cs.map(k=>{const v=G.filter(g=>g.sp===p&&g.country===k).length;return v?String(v):"\u00b7"}),String(G.filter(g=>g.sp===p).length)]}))))}}
+function units(x,B){const{R0}=x,all=lines(R0).filter(l=>num(l[K.rem])>0);
+ const live=all.filter(l=>lv(l)>=0).sort((a,b)=>lv(a)-lv(b)||N(a[K.cust]).localeCompare(N(b[K.cust]))),dead=all.filter(l=>lv(l)<0).sort((a,b)=>lv(b)-lv(a));
+ if(P.admin&&!sal){const m=new Map();live.forEach(l=>m.set(l[K.sp],(m.get(l[K.sp])||0)+num(l[K.rem])));const L=[...m.entries()].sort((a,b)=>b[1]-a[1]),mx=L.length?Math.max(1,L[0][1]):1;
+  B.appendChild(h("h2","","Units to purchase by salesman"));L.forEach(([k,v])=>{const t=h("div","sb"),i=h("i","am");i.style.width=100*v/mx+"%";t.appendChild(i);B.appendChild(h("div","cb",undefined,[h("span","",k),t,h("b","",String(v))]))});B.appendChild(h("h2","","Customers and units"))}
+ const mob=()=>window.matchMedia&&matchMedia("(max-width:700px)").matches;
+ const ucard=(l,dead)=>{const left=lv(l),cls=left>30?"ok":left>14?"mid":"bad",ex=hasD(l)?fd(ed(l))+(dead?"":" \u00b7 "+(left===0?"today":left+"d left")):"";
+  const top=h("div","t",undefined,[h("div","",undefined,[h("strong","",l[K.cust]||""),h("div","s",[P.admin?l[K.sp]:"",l[K.cty]].filter(Boolean).join(" \u00b7 "))]),h("b","",String(num(l[K.rem])),[h("small","","UNITS")])]);
+  const m=h("div","m",undefined,[h("span","",l["Model"]||""),h("span","mut",l[K.code]||""),ex?h("span","pill "+(dead?"bad":cls),(dead?"Expired ":"")+ex):null].filter(Boolean));
+  const k=h("div","uc",undefined,[top,m]);if(l[K.rk])k.appendChild(h("div","rk",String(l[K.rk])));return k};
+ const exp=l=>{const left=lv(l);return h("span","pill "+(left>30?"ok":left>14?"mid":"bad"),fd(ed(l))+" \u00b7 "+(left===0?"expires today":left+" day"+(left==1?"":"s")+" left"))};
+ const sp=P.admin?["Salesman"]:[],spv=l=>P.admin?[l[K.sp]]:[];
+ const row=l=>({c:[...spv(l),l[K.cty]||"",l[K.cust]||"",l["Model"]||"",h("b","",String(num(l[K.rem]))),l[K.code]||"",exp(l),l[K.rk]?h("div","rk",String(l[K.rk])):""]});
+ if(mob()){live.length?live.forEach(l=>B.appendChild(ucard(l,false))):B.appendChild(h("p","mut","No units pending."));if(dead.length){B.appendChild(h("h2","","Expired \u2013 reapply"));dead.forEach(l=>B.appendChild(ucard(l,true)))}return}
+ B.appendChild(live.length?tbl([...sp,"Country","Customer Name","Model","Remaining Units","LOI Code","LOI Expiry","Remarks"],live.map(row)):h("p","mut","No units pending."));
+ if(dead.length){B.appendChild(h("h2","","Expired \u2013 reapply"));
+  B.appendChild(tbl([...sp,"Country","Customer Name","Model","Units","LOI Code","Expired on"],dead.map(l=>({c:[...spv(l),l[K.cty]||"",l[K.cust]||"",l["Model"]||"",String(num(l[K.rem])),l[K.code]||"",h("span","pill bad",fd(ed(l)))]}))))}}
+/* ===== admin only: read the master Excel, check it, encrypt and publish to GitHub ===== */
+const ALPHA="abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789",ITER=600000;
+const hn=s=>String(s==null?"":s).replace(/\s+/g," ").trim();
+const B64=u=>{let s="";for(let i=0;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)};
+const dub=d=>new Date(d).toLocaleString("en-GB",{timeZone:"Asia/Dubai",day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",hour12:false}).replace(" at ",", ");
+const GH={get:()=>{try{return JSON.parse(localStorage.getItem("loi_gh")||"null")}catch(e){return null}},set:v=>{try{v?localStorage.setItem("loi_gh",JSON.stringify(v)):localStorage.removeItem("loi_gh")}catch(e){}}};
+let gh=GH.get(),MS=null,MSF=null,busyP=false,stat="";
+const guess=()=>{const m=location.hostname.match(/^(.+)\.github\.io$/i);let o="",r="";if(m){o=m[1];const s=location.pathname.split("/").filter(Boolean)[0];r=s&&!/\.html?$/i.test(s)?s:location.hostname}return{owner:o,repo:r}};
+async function api(path,opt){opt=opt||{};const hd={"Authorization":"Bearer "+gh.token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};if(opt.body)hd["Content-Type"]="application/json";
+ let r;try{r=await fetch("https://api.github.com"+path,{method:opt.method||"GET",headers:hd,body:opt.body?JSON.stringify(opt.body):undefined})}catch(e){throw new Error("Cannot reach GitHub. Check your internet connection.")}
+ if(r.status===401)throw new Error("GitHub rejected the key (wrong or expired). Create a new key and paste it again.");
+ if(r.status===403||r.status===404){let t="";try{t=(await r.json()).message||""}catch(e){}throw new Error("GitHub says no ("+r.status+"). Check the owner and repository names, and that the key has Contents: Read and write for this repository. "+t)}
+ if(!r.ok){let t="";try{t=(await r.json()).message||""}catch(e){}throw new Error("GitHub error "+r.status+(t?": "+t:""))}
+ return r.json()}
+/* --- minimal .xlsx reader (no libraries): zip + XML --- */
+async function inflate(u){const s=new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return new Uint8Array(await new Response(s).arrayBuffer())}
+async function unzip(buf){const u=new Uint8Array(buf),dv=new DataView(buf),td=new TextDecoder();let e=u.length-22;while(e>=0&&dv.getUint32(e,true)!==0x06054b50)e--;if(e<0)throw new Error("This is not an Excel .xlsx file. Save the master as .xlsx and try again.");
+ const n=dv.getUint16(e+10,true);let p=dv.getUint32(e+16,true);const F={};
+ for(let i=0;i<n;i++){if(dv.getUint32(p,true)!==0x02014b50)break;const m=dv.getUint16(p+10,true),cs=dv.getUint32(p+20,true),nl=dv.getUint16(p+28,true),xl=dv.getUint16(p+30,true),cl=dv.getUint16(p+32,true),lo=dv.getUint32(p+42,true),nm=td.decode(u.subarray(p+46,p+46+nl));
+  const st=lo+30+dv.getUint16(lo+26,true)+dv.getUint16(lo+28,true);F[nm]={m,raw:u.subarray(st,st+cs)};p+=46+nl+xl+cl}
+ return async nm=>{const f=F[nm];if(!f)return null;return td.decode(f.m===0?f.raw:await inflate(f.raw))}}
+const colIdx=ref=>{let n=0;for(const ch of String(ref).replace(/[^A-Za-z]/g,"").toUpperCase())n=n*26+ch.charCodeAt(0)-64;return n-1};
+async function readXlsx(buf){const rd=await unzip(buf),DP=new DOMParser(),X=t=>DP.parseFromString(t,"application/xml"),els=(d,n)=>[...d.getElementsByTagNameNS("*",n)];
+ const wbx=await rd("xl/workbook.xml");if(!wbx)throw new Error("This is not an Excel .xlsx file. Save the master as .xlsx and try again.");
+ const wb=X(wbx),rels=X(await rd("xl/_rels/workbook.xml.rels")),rm={};els(rels,"Relationship").forEach(r=>rm[r.getAttribute("Id")]=r.getAttribute("Target"));
+ const ss=[],sst=await rd("xl/sharedStrings.xml");if(sst)els(X(sst),"si").forEach(si=>ss.push(els(si,"t").filter(t=>t.parentNode.localName!=="rPh").map(t=>t.textContent).join("")));
+ const out={};
+ for(const s of els(wb,"sheet")){const nm=s.getAttribute("name"),rid=s.getAttributeNS("http://schemas.openxmlformats.org/officeDocument/2006/relationships","id")||s.getAttribute("r:id");let tg=rm[rid]||"";tg=tg.startsWith("/")?tg.slice(1):"xl/"+tg.replace(/^\.\//,"");
+  const sx=await rd(tg);const rows=[];if(sx){let rc=0;els(X(sx),"row").forEach(r=>{const ri=r.getAttribute("r")?+r.getAttribute("r")-1:rc;rc=ri+1;const arr=rows[ri]=[];
+   els(r,"c").forEach(c=>{const t=c.getAttribute("t"),v=c.getElementsByTagNameNS("*","v")[0];let val="";
+    if(t==="inlineStr")val=els(c,"t").map(x=>x.textContent).join("");
+    else if(v){const x=v.textContent;val=t==="s"?(ss[+x]==null?"":ss[+x]):t==="b"?(x==="1"?"TRUE":"FALSE"):(t==="str"||t==="e")?x:(x===""?"":(isNaN(+x)?x:+x))}
+    arr[colIdx(c.getAttribute("r"))]=val})})}
+  const w=Math.max(0,...rows.map(r=>r?r.length:0));out[nm]=Array.from(rows,r=>Array.from({length:w},(_,i)=>r&&r[i]!=null?r[i]:""));for(let i=0;i<rows.length;i++)if(!out[nm][i])out[nm][i]=Array(w).fill("")}
+ return out}
+/* --- check the master (same rules as build_pages.py) --- */
+const COMMON=["password","welcome","loi","admin","qwerty","123456","dubai","sales","2025","2026"];
+function weak(pw,login,name){const p=pw.toLowerCase();if(pw.length<10)return"shorter than 10 characters";if(login&&p.includes(login))return"contains the login";for(const x of N(name).split(" "))if(x.length>3&&p.includes(x))return"contains the name";for(const w of COMMON)if(p.includes(w))return"contains the common word '"+w+"'";return""}
+function cdate(v,code,W){if(v===""||v==null){W.push("LOI "+code+" has no LOI Date, so its expiry cannot be calculated.");return""}
+ if(typeof v==="number")return new Date(Date.UTC(1899,11,30)+Math.floor(v)*864e5).toISOString().slice(0,10);
+ const s=String(v).trim();let m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return m[1]+"-"+m[2]+"-"+m[3];
+ m=s.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/);if(m)return m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0");
+ W.push("LOI "+code+": the LOI Date '"+s+"' is not a date.");return""}
+function parseMaster(S,known,fileTime){
+ const E=[],W=[],cv=v=>typeof v==="string"?v.trim():(v==null?"":v),O=S["Orders"],A=S["Access"];
+ if(!O)E.push('The sheet "Orders" is missing.');if(!A)E.push('The sheet "Access" is missing.');if(E.length)return{E,W};
+ const oh=(O[0]||[]).map(hn),need=["LOI Code","LOI Date","Sales Person","Destination - Country","Customer Name","LOI Status","Total Qty","Remaining Units"],miss=need.filter(k=>!oh.includes(k));
+ const ah=(A[0]||[]).map(hn),ai=k=>ah.indexOf(k),am=["Slot","Salesman Name","Login Id","Password","Role"].filter(k=>ai(k)<0);
+ if(miss.length)E.push("The Orders sheet is missing columns: "+miss.join(", ")+".");if(am.length)E.push("The Access sheet is missing columns: "+am.join(", ")+".");if(E.length)return{E,W};
+ const cols=oh.filter(Boolean),ix={};cols.forEach(c=>ix[c]=oh.indexOf(c));const rows=[];let dropped=0,dropEx="";
+ for(let i=1;i<O.length;i++){const r=O[i]||[];if(r.every(x=>cv(x)===""))continue;const o={};cols.forEach(c=>o[c]=cv(r[ix[c]]));
+  if(o["Sales Person"]===""){if(o["LOI Code"]!==""||o["Customer Name"]!==""){dropped++;dropEx=dropEx||String(o["LOI Code"])}continue}rows.push(o)}
+ if(dropped)W.push(dropped+" Orders row(s) have no Sales Person and were left out (for example LOI "+dropEx+").");
+ rows.forEach(r=>{r["LOI Date"]=cdate(r["LOI Date"],r["LOI Code"],W);
+  if(N(r["LOI Status"])==="approved"&&r["Remaining Units"]==="")W.push("LOI "+r["LOI Code"]+" is Approved but Remaining Units is blank.");
+  const q=parseFloat(r["Total Qty"]||0),m=parseFloat(r["Remaining Units"]||0);if(isNaN(q)||isNaN(m)){W.push("Total Qty or Remaining Units is not a number on LOI "+r["LOI Code"]+".");return}
+  if(m<0||m>q)W.push("Remaining Units ("+m+") is negative or higher than Total Qty ("+q+") on LOI "+r["LOI Code"]+".")});
+ const slots=[],seenS=new Set(),seenL=new Set(),seenN=new Set(),known2=new Set(),pwCol=[];let gen=0,kept=0;
+ for(let i=1;i<A.length;i++){const g=k=>cv(A[i][ai(k)]),slot=String(g("Slot")),name=String(g("Salesman Name")),login=hn(g("Login Id")).toLowerCase(),pw0=String(g("Password")),role=String(g("Role"));
+  if(!(slot||name||login)){pwCol.push("");continue}
+  if(!slot){W.push("Access row "+(i+1)+" has no Slot and was skipped.");pwCol.push(pw0);continue}
+  const sid=slot.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");if(!sid){E.push("Access row "+(i+1)+": the Slot '"+slot+"' is not usable.");pwCol.push(pw0);continue}
+  if(seenS.has(sid))E.push("The slot "+slot+" appears twice in Access.");seenS.add(sid);
+  const adm=N(role)==="admin",s={sid,slot,page:sid+".html",name,login,role:adm?"Admin":"Salesman",adm,assigned:!!login&&(adm||!!name),mine:[],pw:pw0,gen:false,kept:false};
+  if(login&&!adm&&!name)W.push("Login Id '"+login+"' has no Salesman Name, so the slot is treated as not assigned.");
+  if(s.assigned){if(seenL.has(login))E.push("The Login Id '"+login+"' is used twice.");seenL.add(login);
+   if(!adm){if(seenN.has(N(name)))W.push("The Salesman Name '"+name+"' appears twice.");seenN.add(N(name));known2.add(N(name))}
+   if(!s.pw){const k=known[sid+"|"+login];if(k){s.pw=k;s.kept=true;kept++}else{const b=crypto.getRandomValues(new Uint8Array(12));s.pw=Array.from(b,x=>ALPHA[x%ALPHA.length]).join("");s.gen=true;gen++}}
+   else{const w=weak(s.pw,login,name);if(w)W.push("Weak password for "+login+" ("+slot+"): "+w+". Use a longer random password.")}
+   s.mine=adm?rows:rows.filter(r=>N(r["Sales Person"])===N(name))}
+  slots.push(s);pwCol.push(s.assigned?s.pw:pw0)}
+ if(!slots.some(s=>s.assigned&&s.adm))E.push("The Access sheet needs an Admin row with a Login Id and a Password.");
+ [...new Set(rows.map(r=>r["Sales Person"]))].sort().forEach(n=>{if(!known2.has(N(n)))W.push("Orders exist for Sales Person '"+n+"' but there is no matching Access row. They appear only on the admin page.")});
+ slots.forEach(s=>{s.lois=new Set(s.mine.map(r=>N(r["Customer Name"])+"|"+r["LOI Date"])).size});
+ const lois=new Set(rows.map(r=>N(r["Customer Name"])+"|"+r["LOI Date"])).size;
+ if(P){const cl=new Set(P.rows.map(r=>N(r[K.cust])+"|"+r[K.date])).size;
+  if(rows.length<P.rows.length*0.8||lois<cl*0.8)W.push("This file has "+rows.length+" order lines and "+lois+" LOIs, but the published data has "+P.rows.length+" lines and "+cl+" LOIs. Is this an older or partial file?");
+  if(P.meta&&fileTime&&fileTime<Date.parse(P.meta.at)-60000)W.push("This file was last saved "+dub(fileTime)+", before the last publish ("+P.meta.atText+"). It may be an old copy.");
+  if(!slots.some(s=>s.assigned&&s.adm&&s.login===P.login&&s.pw===PW))W.push("The administrator login or password in this file is different from the one you are using now. After publishing, everyone using the old one is signed out.")}
+ return{E,W,slots,rows,cols,pwCol,gen,kept,lois}}
+/* --- encrypt and publish --- */
+async function enc1(pw,obj,ts,upd){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),m=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveKey"]),
+ k=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:ITER,hash:"SHA-256"},m,{name:"AES-GCM",length:256},false,["encrypt"]),ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},k,enc.encode(JSON.stringify(obj)));
+ return JSON.stringify({ts,iter:ITER,salt:B64(salt),iv:B64(iv),data:B64(new Uint8Array(ct)),updated:upd})}
+async function publishNow(M,prog){const b="/repos/"+gh.owner+"/"+gh.repo;prog("Connecting to GitHub...");
+ const rp=await api(b),br=rp.default_branch||"main",ref=await api(b+"/git/ref/heads/"+br),head=ref.object.sha,cm=await api(b+"/git/commits/"+head),tr=await api(b+"/git/trees/"+cm.tree.sha+"?recursive=1");
+ const paths=new Set(tr.tree.filter(t=>t.type==="blob").map(t=>t.path)),ts=Math.max(Math.floor(Date.now()/1000),(D.ts||0)+1),upd=dub(Date.now()),files=[];
+ const creds=M.slots.filter(s=>s.assigned&&!s.adm).map(s=>({slot:s.slot,page:s.page,name:s.name,login:s.login,pw:s.pw})),act=M.slots.filter(s=>s.assigned);
+ const meta={by:gh.user||"admin",at:new Date().toISOString(),atText:upd,lois:M.lois,lines:M.rows.length,people:creds.length};let k=0;
+ for(const s of act){prog("Encrypting "+(++k)+" of "+act.length+"...");const pl={login:s.login,name:s.name||s.login,admin:s.adm,cols:M.cols,rows:s.mine};if(s.adm){pl.meta=meta;pl.creds=creds}
+  files.push({path:"data/"+s.sid+".json",text:await enc1(s.pw,pl,ts,upd)})}
+ const dead=new Set(M.slots.filter(s=>!s.assigned).map(s=>s.sid));paths.forEach(p=>{const m=p.match(/^data\/([^\/]+)\.json$/);if(m&&!m[1].startsWith("_")&&!act.some(s=>s.sid===m[1]))dead.add(m[1])});
+ dead.forEach(id=>files.push({path:"data/"+id+".json",text:JSON.stringify({ts,revoked:true})}));
+ const nw=M.slots.filter(s=>!paths.has(s.page));if(nw.length){const src=await(await fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"})).text();nw.forEach(s=>files.push({path:s.page,text:src.split('"'+DF+'"').join('"data/'+s.sid+'.json"')}))}
+ const ent=[];for(let i=0;i<files.length;i++){prog("Uploading "+(i+1)+" of "+files.length+"...");const bl=await api(b+"/git/blobs",{method:"POST",body:{content:files[i].text,encoding:"utf-8"}});ent.push({path:files[i].path,mode:"100644",type:"blob",sha:bl.sha})}
+ prog("Saving...");const nt=await api(b+"/git/trees",{method:"POST",body:{base_tree:cm.tree.sha,tree:ent}}),
+ nc=await api(b+"/git/commits",{method:"POST",body:{message:"Update LOI data - "+meta.by+" - "+upd,tree:nt.sha,parents:[head]}});
+ try{await api(b+"/git/refs/heads/"+br,{method:"PATCH",body:{sha:nc.sha,force:false}})}catch(e){throw new Error("Someone else published at the same moment, or GitHub refused the update. Nothing was changed. Please upload again. ("+e.message+")")}
+ return{files:files.length,at:upd}}
+/* --- screens --- */
+const copy=async t=>{try{await navigator.clipboard.writeText(t)}catch(e){const a=h("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(_){}a.remove()}toast("Copied")};
+const btn=(t,f,c)=>{const b=h("button",c||"btn",t);b.onclick=f;return b};
+const msg=(c,t)=>h("div","msg "+c,t);
+function publish(x,B){B.appendChild(h("h2","","Upload master"));const cn=h("div","pc");
+ if(gh&&gh.token){cn.appendChild(h("div","r",undefined,[h("span","","Connected to "+gh.owner+"/"+gh.repo+(gh.user?" as "+gh.user:"")),btn("Disconnect",()=>{gh=null;GH.set(null);MS=null;draw()},"btn2")]))}
+ else{const g=guess(),o=h("input"),r=h("input"),t=h("input"),er=h("div","msg e");er.hidden=true;o.value=g.owner;r.value=g.repo;o.placeholder="GitHub username";r.placeholder="Repository name";t.type="password";t.placeholder="Paste your GitHub key";[o,r,t].forEach(i=>{i.autocapitalize="none";i.autocorrect="off";i.spellcheck=false;i.autocomplete="off"});
+  cn.appendChild(h("strong","","Connect GitHub (once on this device)"));cn.appendChild(h("div","fld",undefined,[o,r]));t.style.marginTop="8px";cn.appendChild(t);
+  const go2=btn("Connect",async()=>{er.hidden=true;go2.disabled=true;go2.textContent="Checking...";try{gh={owner:o.value.trim(),repo:r.value.trim(),token:t.value.trim()};if(!gh.owner||!gh.repo||!gh.token)throw new Error("Fill in all three boxes.");
+    const rp=await api("/repos/"+gh.owner+"/"+gh.repo);if(rp.permissions&&rp.permissions.push===false)throw new Error("This key can read the repository but not change it. Give it Contents: Read and write.");
+    const u=await api("/user");gh.user=u.login;GH.set(gh);draw()}catch(e){gh=null;er.textContent=e.message;er.hidden=false;go2.disabled=false;go2.textContent="Connect"}});go2.style.marginTop="12px";cn.appendChild(go2);cn.appendChild(er)}
+ B.appendChild(cn);if(!(gh&&gh.token))return;
+ const fi=h("input");fi.type="file";fi.accept=".xlsx";fi.id="mf";const pc=h("div","pc",undefined,[h("strong","","1. Choose your master Excel file"),h("div","mut","LOI master sheet for app.xlsx (saved as .xlsx)"),fi]);B.appendChild(pc);
+ const out=h("div");B.appendChild(out);
+ fi.onchange=async()=>{const f=fi.files[0];if(!f)return;out.textContent="";out.appendChild(h("p","mut","Reading the file..."));MS=null;
+  try{const S=await readXlsx(await f.arrayBuffer()),kn={};(P.creds||[]).forEach(c=>kn[c.slot.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")+"|"+c.login]=c.pw);MS=parseMaster(S,kn,f.lastModified);MS.name=f.name}catch(e){MS={E:[e.message||"The file could not be read."],W:[]}}
+  prev(out)};
+ if(MS)prev(out);else if(stat)out.appendChild(msg("o",stat))}
+function prev(out){out.textContent="";const M=MS;if(!M)return;
+ if(M.E.length){M.E.forEach(e=>out.appendChild(msg("e",e)));out.appendChild(msg("e","Nothing can be published until this is fixed in the Excel file. Fix it, save and choose the file again."));return}
+ const T=h("div","tiles");[[M.lois,"LOIs"],[M.rows.length,"Order lines"],[M.slots.filter(s=>s.assigned&&!s.adm).length,"Salesmen"],[M.slots.filter(s=>!s.assigned).length,"Spare slots"]].forEach(([v,l])=>T.appendChild(h("div","tile",undefined,[h("b","",String(v)),h("span","",l)])));out.appendChild(T);
+ M.W.forEach(w=>out.appendChild(msg("w",w)));
+ if(M.gen){out.appendChild(msg("w",M.gen+" login(s) had no password, so new random passwords were made. They will be published and kept under Share logins. Copy them into your Excel Password column too."));
+  out.appendChild(btn("Copy Password column for Excel",()=>copy(M.pwCol.join("\n")),"btn2"))}
+ if(M.kept)out.appendChild(msg("o",M.kept+" login(s) had a blank password in the file, so the current published password is kept."));
+ const rows=M.slots.map(s=>({c:[s.slot,s.assigned?(s.name||"Admin"):"Not assigned",s.assigned?s.login:"",s.role==="Admin"&&s.assigned?"Admin":(s.assigned?"Salesman":""),s.assigned?String(s.lois):"",s.assigned?String(s.mine.length):""]}));
+ out.appendChild(h("h2","","2. Check and publish"));out.appendChild(tbl(["Slot","Name","Login Id","Role","LOIs","Lines"],rows));
+ let ck=null;if(M.W.length){ck=h("input");ck.type="checkbox";out.appendChild(h("label","chk",undefined,[ck,h("span","","I have read the warnings and want to publish anyway")]))}
+ const pb=btn("Publish to all links",async()=>{if(busyP)return;if(ck&&!ck.checked){toast("Tick the box to confirm the warnings");return}busyP=true;pb.disabled=true;const st=h("div","msg o","Starting...");out.appendChild(st);
+  try{const r=await publishNow(M,t=>st.textContent=t);stat="Published "+r.at+". The links update within 1 to 3 minutes. "+r.files+" files saved.";MS=null;out.textContent="";out.appendChild(msg("o",stat));toast("Published")}
+  catch(e){st.className="msg e";st.textContent=e.message;pb.disabled=false}busyP=false});pb.style.marginTop="12px";out.appendChild(pb)}
+function share(x,B){B.appendChild(h("h2","","Share logins"));const C=P.creds;
+ if(!C||!C.length){B.appendChild(h("p","mut","No logins yet. Publish the master file once and they appear here."));return}
+ B.appendChild(h("div","mut","Send each person their own message privately."));
+ const lk=c=>new URL(c.page,location.href).href;
+ const msgT=c=>"Hi "+c.name.split(" ")[0]+", your Sales LOIs link: "+lk(c)+"\nLogin Id: "+c.name+"\nPassword: "+c.pw+"\nTip: open the link on your phone and choose Add to Home Screen.";
+ C.forEach(c=>{B.appendChild(h("div","pc",undefined,[h("strong","",c.name),h("div","mut",lk(c)),h("div","mono","Login Id: "+c.name+"   Password: "+c.pw),h("div","r2",undefined,[btn("Copy message",()=>copy(msgT(c)),"btn2"),btn("Copy link",()=>copy(lk(c)),"btn2")])]))});
+ B.appendChild(btn("Copy all as a list",()=>copy(C.map(c=>c.name+"\t"+lk(c)+"\t"+c.name+"\t"+c.pw).join("\n")),"btn2"))}
+
+async function dc(pw,src){src=src||D;const m=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveKey"]);
+ const k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(src.salt),iterations:src.iter,hash:"SHA-256"},m,{name:"AES-GCM",length:256},false,["decrypt"]);
+ try{return JSON.parse(dec.decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(src.iv)},k,b64(src.data))))}catch(_){return null}}
+const toast=t=>{const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),3200)};
+function setup(){if(P.admin){const s=$("sal");s.textContent="";const o=h("option","","All salesmen");o.value="";s.appendChild(o);[...new Set(P.rows.map(r=>r[K.sp]))].sort().forEach(v=>{const o2=h("option","",v);o2.value=v;s.appendChild(o2)});s.value=sal;$("adm").hidden=false}}
+function signout(msg){clearInterval(TM);P=null;PW=null;MS=null;$("p").value="";$("app").hidden=true;$("login").hidden=false;$("err").textContent=msg||""}
+let busy=false;
+async function refresh(){if(!P||busy||!DF||location.protocol==="file:")return;busy=true;
+ try{const r=await fetch(DF+"?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const n=await r.json();
+  if(n.revoked){signout("Your access has been removed.");return}
+  if(!(n.ts>D.ts))return;
+  const d=await dc(PW,n);if(!d||d.login!==P.login){signout("Your access has changed. Please sign in again.");return}
+  D=n;P=d;if(P.admin&&sal&&!P.rows.some(r=>r[K.sp]===sal))sal="";setup();draw();toast("Updated just now")}
+ catch(e){}finally{busy=false}}
+async function getD(){const r=await fetch(DF+"?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;return r.json()}
+async function login(){$("err").textContent="";const u=$("u").value.trim().replace(/\s+/g," ").toLowerCase(),p=$("p").value;
+ if(!u||!p){$("err").textContent="Enter your Login Id and password.";return}
+ if(!(window.crypto&&crypto.subtle)){$("err").textContent="This browser cannot open the page securely. Please use the https link in Safari or Chrome.";return}
+ $("go").disabled=true;$("go").textContent="Checking...";let d=null,n=null,bad="";
+ try{n=await getD()}catch(e){bad="Cannot load the data. Check your internet connection and try again."}
+ if(n&&n.revoked)bad="This link is not active. Please contact your manager.";
+ if(!bad){D=n;try{d=await dc(p)}catch(e){}}
+ $("go").disabled=false;$("go").textContent="Sign in";
+ if(bad){$("err").textContent=bad;return}
+ if(!d||d.login!==u){$("err").textContent="Login Id or password is not correct.";return}
+ P=d;PW=p;view="home";sub="all";sal="";cty="";q="";full=false;stat="";MS=null;$("login").hidden=true;$("app").hidden=false;setup();draw();
+ clearInterval(TM);TM=setInterval(refresh,POLL)}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()});window.addEventListener("online",refresh);
+$("sal").onchange=e=>{sal=e.target.value;draw()};$("go").onclick=login;$("p").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("u").addEventListener("keydown",e=>{if(e.key==="Enter")$("p").focus()});
+$("lo").onclick=()=>signout("");
+</script></body></html>
